@@ -3,6 +3,7 @@ package edu.microserviceslab.vehiclemicroservice.controller;
 import edu.microserviceslab.vehiclemicroservice.entity.Vehicle;
 import edu.microserviceslab.vehiclemicroservice.service.interfaces.VehicleService;
 import org.springframework.web.bind.annotation.*;
+import edu.microserviceslab.vehiclemicroservice.entity.*;
 
 import java.util.List;
 
@@ -34,7 +35,9 @@ public class VehicleController {
         if (vehicle == null) {
             throw new IllegalStateException("Please submit a vehicle to add.");
         }
-
+//        System.out.println(vehicle.getRegistration());
         return vehicleService.addVehicle(vehicle);
+                //vehicle.getRegistration();
+//                vehicleService.addVehicle(vehicle);
     }
 }

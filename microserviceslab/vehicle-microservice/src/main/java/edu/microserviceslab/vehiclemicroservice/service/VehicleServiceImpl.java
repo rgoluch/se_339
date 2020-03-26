@@ -28,6 +28,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Vehicle addVehicle(Vehicle vehicle) {
+//        registrationRepo.save(vehicle.getRegistration());
         return vehicleRepo.save(vehicle);
     }
 
@@ -42,8 +43,6 @@ public class VehicleServiceImpl implements VehicleService {
                 toReturn = registration.getLicensePlate();
             }
         }
-
-    //testing
 
         return toReturn;
     }
