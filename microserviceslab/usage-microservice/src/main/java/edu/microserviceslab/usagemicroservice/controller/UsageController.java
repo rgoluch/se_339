@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -35,5 +37,11 @@ public class UsageController {
     @RequestMapping("/vehicle/{vehicleId}")
     public List<UsageStatistic> listAllUsageStatisticsForVehicle(@PathVariable("vehicleId") Long vehicleId) {
         return usageService.getUsageStatisticsPerVehicle(vehicleId);
+    }
+
+    @ResponseBody
+    @RequestMapping(path = "/add", method = RequestMethod.POST)
+    public UsageStatistic AddUsageStatisticsForVehicle(@RequestBody UsageStatistic u) {
+        return usageService.addUsageStatistic(u);
     }
 }
