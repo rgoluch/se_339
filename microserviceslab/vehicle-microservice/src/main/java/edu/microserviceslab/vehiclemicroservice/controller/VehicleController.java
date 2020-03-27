@@ -35,9 +35,18 @@ public class VehicleController {
         if (vehicle == null) {
             throw new IllegalStateException("Please submit a vehicle to add.");
         }
-//        System.out.println(vehicle.getRegistration());
+        if (vehicle.getMake() == null){
+            throw new IllegalStateException("Please submit a vehicle make.");
+        }
+        if (vehicle.getModel() == null){
+            throw new IllegalStateException("Please submit a vehicle model.");
+        }
+        if (vehicle.getModelYear() == null){
+            throw new IllegalStateException("Please submit a vehicle model year.");
+        }
+        if (vehicle.getRegistration() == null){
+            throw new IllegalStateException("Please submit a vehicle registration.");
+        }
         return vehicleService.addVehicle(vehicle);
-                //vehicle.getRegistration();
-//                vehicleService.addVehicle(vehicle);
     }
 }

@@ -29,6 +29,15 @@ public class DriverController {
         if (driver == null) {
             throw new IllegalStateException("Please submit a driver to add.");
         }
+        if (driver.getFirstName() == null){
+            throw new IllegalStateException("Please submit a driver first name.");
+        }
+        if (driver.getLastName() == null){
+            throw new IllegalStateException("Please submit a driver last name.");
+        }
+        if (driver.getPhoneNumber() == null){
+            throw new IllegalStateException("Please submit a driver phone number.");
+        }
         if (driver.getVehicleId() == null) {
             throw new IllegalStateException("The driver needs to have a vehicle assigned to him.");
         }

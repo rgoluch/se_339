@@ -42,6 +42,30 @@ public class UsageController {
     @ResponseBody
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     public UsageStatistic AddUsageStatisticsForVehicle(@RequestBody UsageStatistic u) {
+        if (u == null) {
+            throw new IllegalStateException("Please submit a usage statistic to add.");
+        }
+        if (u.getCreatedDate() == null){
+            throw new IllegalStateException("Please submit a created date statistic.");
+        }
+        if (u.getSpeed() == null){
+            throw new IllegalStateException("Please submit a speed statistic.");
+        }
+        if (u.getFuelLevel() == null){
+            throw new IllegalStateException("Please submit a fuel level statistic.");
+        }
+        if (u.getRotationsPerMinute() == null){
+            throw new IllegalStateException("Please submit a rotations per minute statistic.");
+        }
+        if (u.getLatitude() == null){
+            throw new IllegalStateException("Please submit a latitude statistic.");
+        }
+        if (u.getLongitude() ==  null){
+            throw new IllegalStateException("Please submit a longitude statistic.");
+        }
+        if (u.getVehicleId() == null){
+            throw new IllegalStateException("Please submit a vehicle id for the statistics.");
+        }
         return usageService.addUsageStatistic(u);
     }
 }
