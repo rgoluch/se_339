@@ -12,6 +12,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+public static final String topicExchangeName = "spring-boot-exchange";
+public static final String queueName = "spring-boot";
+
 @SpringBootApplication
 public class Application {
     @Bean
@@ -26,6 +29,24 @@ public class Application {
         return rabbitTemplate;
     }
 
+    @Bean
+    TopicExchange exchange() {
+        return new TopicExchange(topicExchangeName);
+    }
+    @Bean
+    Binding binding(Queue queue, TopicExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with("foo.bar.#");
+    }
+    @Bean
+    SimpleMessageListenerContainer container(ConnectionFactory connectionFactory, UsageService usageService) {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.setQueueNames(queueName);
+        container.setMessageListener(new Consumer(usageService));
+        container.setConcurrentConsumers(1);
+        container.setAcknowledgeMode(AcknowledgeMode.AUTO);
+        return container;
+    }
     public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(Application.class, args);
     }
