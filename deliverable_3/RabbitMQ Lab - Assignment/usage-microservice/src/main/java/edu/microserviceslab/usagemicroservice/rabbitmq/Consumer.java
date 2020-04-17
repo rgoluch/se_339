@@ -31,7 +31,12 @@ public class Consumer implements MessageListener {
 
         byte[] j = message.getBody();
         ObjectMapper mapper = new ObjectMapper();
-        UsageStatisticRequest s = mapper.readValue(j, UsageStatisticRequest.class);
+        UsageStatisticRequest s = null;
+        try {
+            s = mapper.readValue(j, UsageStatisticRequest.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         List<PidRequest> pid = s.getPids();
 
@@ -39,7 +44,7 @@ public class Consumer implements MessageListener {
             UsageStatistic temp = new UsageStatistic();
             temp.setVehicleId(s.getVehicleId());
             temp.setPid(p.getPid());
-            temp.setData(p);
+            temp.setData(p.getData());
 
             r.save(temp);
         }
