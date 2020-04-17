@@ -42,12 +42,12 @@ public class Consumer implements MessageListener {
 
         for (PidRequest p : pid){
 
-//           UsageStatistic temp = new UsageStatistic();
-            u.setVehicleId(s.getVehicleId());
-            u.setPid(p.getPid());
-            u.setData(p.getData());
+          UsageStatistic temp = new UsageStatistic();
+            temp.setVehicleId(s.getVehicleId());
+            temp.setPid(p.getPid());
+            temp.setData(p.getData());
 
-            r.save(u);
+            u.save(temp);
 
         }
     }
