@@ -38,5 +38,8 @@ dependencies {
 
     compile group: 'com.h2database', name: 'h2', version: '1.4.197'
 
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '2.0.5.RELEASE'
+
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.5.RELEASE'
 }
