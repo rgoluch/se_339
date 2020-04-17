@@ -38,7 +38,7 @@ public class Consumer implements MessageListener {
         for (PidRequest p : pid){
             UsageStatistic temp = new UsageStatistic();
             temp.setVehicleId(s.getVehicleId());
-            temp.setPid(p);
+            temp.setPid(p.getPid());
             temp.setData(p);
 
             r.save(temp);
