@@ -12,11 +12,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-public static final String topicExchangeName = "spring-boot-exchange";
-public static final String queueName = "spring-boot";
+
 
 @SpringBootApplication
 public class Application {
+    public static final String topicExchangeName = "spring-boot-exchange";
+    public static final String queueName = "spring-boot";
     @Bean
     public MessageConverter jackson2JsonMessageConverter(){
         return new Jackson2JsonMessageConverter();
@@ -28,7 +29,10 @@ public class Application {
         rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter());
         return rabbitTemplate;
     }
-
+    @Bean
+    Queue queue() {
+        return new Queue(queueName, false);
+    }
     @Bean
     TopicExchange exchange() {
         return new TopicExchange(topicExchangeName);
