@@ -45,7 +45,7 @@ public class Consumer implements MessageListener {
             temp.setVehicleId(s.getVehicleId());
             temp.setPid(p.getPid());
             temp.setData(p.getData());
-
+            System.out.println(temp.toString());
             r.save(temp);
         }
     }
